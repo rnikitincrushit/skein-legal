@@ -1,0 +1,13 @@
+Drop non-bundled cosmetic assets here for the composite templates:
+
+  back-classic.jpg    Classic Purple card back (Supabase cosmetic-assets/card-backs/back_classic.jpg)
+  back-whiskered.jpg  Whiskered deck back (cosmetic-assets/decks/deck_cats/card-back.jpg or similar)
+  back-moonlit.jpg    Moonlit Lore back
+  table-velvet.jpg    Velvet table texture (cosmetic-assets/tables/table_velvet.jpg)
+  table-marble.jpg    Marble table texture
+  table-starry.jpg    Starry Night table texture
+  fx-sparks.png       Golden Sparks flip effect overlay (optional)
+
+These are tracked in git so the dashed-box fallback in the templates
+points to a real (empty) directory, but the actual *.jpg / *.png
+files are gitignored (large binaries — keep out of the legal repo).

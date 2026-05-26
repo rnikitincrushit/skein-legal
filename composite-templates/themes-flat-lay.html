@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=1200, initial-scale=1"/>
+<title>Composite — Journal Covers (themes flat-lay)</title>
+<!--
+  Final aspect: 4:5 → 1200×1500
+  Output file: docs/legal/site/images/customize/v2-themes-flat-lay.webp
+
+  Composition (revised after first render):
+  - DEFAULT (Leather Grimoire) sits in the front + centre, slightly
+    larger. Rationale: matches the site's "Free to start" framing —
+    the default cover is what every visitor sees on install day 1.
+    Plus doesn't get a visual hero here; the dedicated #plus section
+    handles that pitch.
+  - 4 alternative covers fanned in a wide arc BEHIND the default,
+    each clearly visible (not stacked / overlapping), with stronger
+    horizontal spread than the v1 attempt.
+  - Stellar Atlas sits at one end of the arc (not centre) so the Plus
+    differentiation reads as "and a Plus-only option exists" without
+    dominating.
+
+  Source assets (all bundled):
+    src/assets/book/book-default.png   (Leather Grimoire — HERO, centre+front)
+    src/assets/book/book-witch.png     (Witch's Grimoire)
+    src/assets/book/book-academia.png  (Dark Academia)
+    src/assets/book/book-botanical.png (Botanical Herbalist)
+    src/assets/book/book-stellar.png   (Stellar Atlas)
+-->
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body {
+    width: 1200px; height: 1500px; overflow: hidden;
+    background: #0A0A0F;
+    font-family: 'Georgia', serif;
+  }
+  /* Starfield background — reuses the hero-background image from the
+     live site so the composite reads as part of the same universe as
+     the hero mockup above. Layered with a darkening gradient so the
+     starfield doesn't compete with the cover artwork (especially
+     Witch's sigils + Stellar's constellations). */
+  .starfield {
+    position: absolute; inset: 0;
+    background-image: url('../images/hero-background.webp');
+    background-size: cover;
+    background-position: center;
+    opacity: 1;
+    mix-blend-mode: screen;
+  }
+  .starfield-overlay {
+    position: absolute; inset: 0;
+    /* Radial vignette + bottom darken so the centre stays visible
+       but the bottom + edges fade for the CSS gradient on the live
+       site and to focus attention on the covers in the middle */
+    background:
+      radial-gradient(ellipse at 50% 45%, transparent 0%, rgba(10, 10, 15, 0.1) 60%, rgba(10, 10, 15, 0.85) 100%),
+      linear-gradient(to bottom, transparent 0%, transparent 60%, rgba(10, 10, 15, 0.7) 100%);
+    pointer-events: none;
+  }
+  .stage {
+    position: relative;
+    width: 100%; height: 100%;
+    display: flex; align-items: center; justify-content: center;
+    z-index: 2;
+  }
+  .cover {
+    position: absolute;
+    transform-origin: 50% 60%;
+    filter: drop-shadow(0 24px 50px rgba(0, 0, 0, 0.6))
+            drop-shadow(0 0 30px rgba(196, 125, 90, 0.06));
+  }
+  .cover img {
+    display: block; height: 620px; width: auto;
+    border-radius: 10px;
+  }
+  /* Missing-asset fallback — shows the filename so it's obvious what to add */
+  .cover img.broken {
+    width: 460px; height: 620px;
+    background: repeating-linear-gradient(
+      45deg, rgba(196,125,90,0.12), rgba(196,125,90,0.12) 12px,
+      transparent 12px, transparent 24px
+    );
+    border: 2px dashed rgba(196,125,90,0.5);
+    color: rgba(240,237,229,0.7);
+  }
+  /* Back row — 4 alternatives spread across a wider arc.
+     Pairs at -480 / -200 / 200 / 480 horizontally with mirrored
+     rotation. Slight Y stagger so the centre two sit higher (closer
+     to the camera optically) than the edges. */
+  .c-academia  { transform: translate(-480px, -20px) rotate(-16deg); z-index: 1; }
+  .c-witch     { transform: translate(-200px, -60px) rotate(-6deg);  z-index: 2; }
+  .c-botanical { transform: translate(200px, -60px)  rotate(6deg);   z-index: 2; }
+  .c-stellar   { transform: translate(480px, -20px)  rotate(16deg);  z-index: 1; }
+  /* DEFAULT — hero, front + centre, slightly larger, no rotation */
+  .c-default {
+    transform: translate(0, 90px) scale(1.18);
+    z-index: 10;
+    filter: drop-shadow(0 36px 70px rgba(0, 0, 0, 0.75))
+            drop-shadow(0 0 50px rgba(196, 125, 90, 0.10));
+  }
+  /* Soft vignette over the whole composition so the bottom-third
+     stays clean for the index.html CSS gradient overlay */
+  .vignette {
+    position: absolute; inset: 0;
+    background: linear-gradient(
+      to bottom,
+      transparent 0%, transparent 65%,
+      rgba(10, 10, 15, 0.55) 100%
+    );
+    pointer-events: none;
+    z-index: 20;
+  }
+</style>
+</head>
+<body>
+<div class="starfield"></div>
+<div class="starfield-overlay"></div>
+<div class="stage">
+  <!-- Back row (left to right): Academia → Witch → Botanical → Stellar -->
+  <div class="cover c-academia">
+    <img src="../../../../src/assets/book/book-academia.png"
+         alt="Dark Academia journal cover"
+         onerror="this.classList.add('broken'); this.alt=this.getAttribute('src').split('/').pop();"/>
+  </div>
+  <div class="cover c-witch">
+    <img src="../../../../src/assets/book/book-witch.png"
+         alt="Witch's Grimoire journal cover"
+         onerror="this.classList.add('broken'); this.alt=this.getAttribute('src').split('/').pop();"/>
+  </div>
+  <div class="cover c-botanical">
+    <img src="../../../../src/assets/book/book-botanical.png"
+         alt="Botanical Herbalist journal cover"
+         onerror="this.classList.add('broken'); this.alt=this.getAttribute('src').split('/').pop();"/>
+  </div>
+  <div class="cover c-stellar">
+    <img src="../../../../src/assets/book/book-stellar.png"
+         alt="Stellar Atlas journal cover (Plus exclusive)"
+         onerror="this.classList.add('broken'); this.alt=this.getAttribute('src').split('/').pop();"/>
+  </div>
+  <!-- Front + centre — DEFAULT leather grimoire, the "Free to start" hero -->
+  <div class="cover c-default">
+    <img src="../../../../src/assets/book/book-default.png"
+         alt="Leather Grimoire (default) journal cover — the free baseline"
+         onerror="this.classList.add('broken'); this.alt=this.getAttribute('src').split('/').pop();"/>
+  </div>
+  <div class="vignette"></div>
+</div>
+</body>
+</html>

@@ -3,29 +3,29 @@
 <html class="dark" lang="en"><head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>SKEIN — Daily Tarot Ritual App for iOS & Android</title>
-<meta name="description" content="Draw cards, track streaks, journal your readings. A tarot app with real moon phases, 4 hand-illustrated decks, and a physical deck companion. Free to practice."/>
+<title>Skein — A daily reflection ritual journal for iOS &amp; Android</title>
+<meta name="description" content="A private reflection journal built around a daily card ritual. Pattern Mirror tracks the rhythms of your practice. Voice and photo capture. Physical-deck companion. Free to start."/>
 <link rel="canonical" href="https://getskein.app/"/>
 <!-- Favicon & Icons -->
 <link href="images/favicon.ico" rel="icon" type="image/x-icon"/>
 <link href="images/apple-touch-icon.png" rel="apple-touch-icon"/>
 <!-- Open Graph -->
 <meta property="og:type" content="website"/>
-<meta property="og:site_name" content="SKEIN"/>
+<meta property="og:site_name" content="Skein"/>
 <meta property="og:url" content="https://getskein.app/"/>
-<meta property="og:title" content="SKEIN — Daily Tarot Ritual"/>
-<meta property="og:description" content="Draw cards, track streaks, journal your readings. A tarot app with real moon phases, 4 hand-illustrated decks, and a physical deck companion. Free to practice."/>
+<meta property="og:title" content="Skein — A daily reflection ritual"/>
+<meta property="og:description" content="A private reflection journal built around a daily card ritual. Pattern Mirror tracks the rhythms of your practice. Free to start."/>
 <meta property="og:image" content="https://getskein.app/images/og-image.png"/>
 <meta property="og:image:url" content="https://getskein.app/images/og-image.png"/>
 <meta property="og:image:width" content="1200"/>
 <meta property="og:image:height" content="630"/>
-<meta property="og:image:alt" content="SKEIN tarot app — brand mark with three cards fanned on a dark celestial background"/>
+<meta property="og:image:alt" content="Skein — brand mark with cards fanned on a dark celestial background"/>
 <!-- Twitter / X -->
 <meta name="twitter:card" content="summary_large_image"/>
-<meta name="twitter:title" content="SKEIN — Daily Tarot Ritual"/>
-<meta name="twitter:description" content="Draw cards, track streaks, journal your readings. Free tarot app with real moon phases and 4 illustrated decks."/>
+<meta name="twitter:title" content="Skein — A daily reflection ritual"/>
+<meta name="twitter:description" content="A private reflection journal built around a daily card ritual. Pattern Mirror tracks the rhythms of your practice."/>
 <meta name="twitter:image" content="https://getskein.app/images/og-image.png"/>
-<meta name="twitter:image:alt" content="SKEIN tarot app — brand mark with three cards fanned on a dark celestial background"/>
+<meta name="twitter:image:alt" content="Skein — brand mark with cards fanned on a dark celestial background"/>
 <!-- Additional SEO -->
 <meta name="theme-color" content="#0A0A0F"/>
 <meta name="apple-mobile-web-app-title" content="SKEIN"/>
@@ -139,6 +139,12 @@ html { scroll-behavior: smooth }
     padding: 10px;
     box-shadow: inset 0 0 2px 2px rgba(255,255,255,0.1), 0 20px 50px rgba(0,0,0,0.5);
 }
+/* Smaller variant used in the #screens carousel so 5 mockups fit
+   inside the centred max-w-7xl column on desktop without horizontal
+   overflow. Full 280×570 mockups are reserved for the hero and the
+   single-iPhone section showcases (celestial / journal / pattern
+   mirror) where they need to read at feature scale. */
+.iphone-frame--carousel { width: 240px; height: 488px; }
 .iphone-screen {
     position: relative;
     width: 100%;
@@ -207,7 +213,7 @@ posthog.init('phc_PVNjy8c1zzjKhlbgNU8vcDEECp5dsM4NHR4cQMcQ72G', {
 <div class="hidden md:flex items-center gap-12 font-serif text-[#F0EDE5] tracking-wide" id="nav-links">
 <a class="nav-link text-[#C8C3B8] hover:text-[#D4956E] transition-colors duration-500" href="#ritual" data-section="ritual">Ritual</a>
 <a class="nav-link text-[#C8C3B8] hover:text-[#D4956E] transition-colors duration-500" href="#journal" data-section="journal">Journal</a>
-<a class="nav-link text-[#C8C3B8] hover:text-[#D4956E] transition-colors duration-500" href="#decks" data-section="decks">Decks</a>
+<a class="nav-link text-[#C8C3B8] hover:text-[#D4956E] transition-colors duration-500" href="#customize" data-section="customize">Customize</a>
 <a class="nav-link text-[#C8C3B8] hover:text-[#D4956E] transition-colors duration-500" href="#founder" data-section="founder">Founder</a>
 </div>
 <!-- Mobile burger -->
@@ -223,7 +229,7 @@ posthog.init('phc_PVNjy8c1zzjKhlbgNU8vcDEECp5dsM4NHR4cQMcQ72G', {
 <div id="mobile-menu" class="hidden md:hidden flex-col items-center gap-6 py-8 font-serif text-lg tracking-wide bg-[#0A0A0F]/95 backdrop-blur-xl border-t border-[#C47D5A]/10">
 <a class="nav-link-mobile text-[#C8C3B8] hover:text-[#C47D5A] transition-colors duration-300" href="#ritual">Ritual</a>
 <a class="nav-link-mobile text-[#C8C3B8] hover:text-[#C47D5A] transition-colors duration-300" href="#journal">Journal</a>
-<a class="nav-link-mobile text-[#C8C3B8] hover:text-[#C47D5A] transition-colors duration-300" href="#decks">Decks</a>
+<a class="nav-link-mobile text-[#C8C3B8] hover:text-[#C47D5A] transition-colors duration-300" href="#customize">Customize</a>
 <a class="nav-link-mobile text-[#C8C3B8] hover:text-[#C47D5A] transition-colors duration-300" href="#founder">Founder</a>
 </div>
 </nav>
@@ -233,7 +239,7 @@ posthog.init('phc_PVNjy8c1zzjKhlbgNU8vcDEECp5dsM4NHR4cQMcQ72G', {
 <div class="absolute inset-0 z-0">
 <div class="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-[#0A0A0F] z-10"></div>
 <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[150%] h-[150%] bg-radial from-[#C47D5A]/10 via-transparent to-transparent opacity-50"></div>
-<img alt="Atmospheric tarot" class="w-full h-full object-cover mix-blend-overlay opacity-30" src="images/hero-background.webp"/>
+<img alt="Atmospheric parchment journal" class="w-full h-full object-cover mix-blend-overlay opacity-30" src="images/hero-background.webp"/>
 </div>
 <div class="relative z-10 w-full max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-12">
 <!-- Left: Brand Content -->
@@ -241,7 +247,8 @@ posthog.init('phc_PVNjy8c1zzjKhlbgNU8vcDEECp5dsM4NHR4cQMcQ72G', {
 <img alt="SKEIN Brand Mark" class="animate-breathe w-56 md:w-72 h-auto object-contain" src="images/brand-mark.webp"/>
 <div class="space-y-4">
 <h1 class="font-script text-5xl md:text-7xl text-[#C47D5A] leading-tight" style="text-shadow: 0 0 40px rgba(196,125,90,0.3);">Pull the thread.</h1>
-<p class="font-label text-sm uppercase tracking-[0.4em] text-[#C8C3B8]">Daily Tarot Ritual</p>
+<p class="font-label text-sm uppercase tracking-[0.4em] text-[#C8C3B8]">A daily reflection ritual</p>
+<p class="font-serif text-lg md:text-xl text-[#C8C3B8] leading-relaxed max-w-lg">A private reflection journal built around a single daily card. The deck draws an archetype. You write what it stirs. Pattern Mirror shows the rhythms of your practice over time.</p>
 </div>
 <div class="pt-4 flex flex-col sm:flex-row gap-4">
 <a href="#waitlist" class="inline-block bg-gradient-to-r from-primary-container to-on-primary-fixed-variant text-on-primary px-10 py-4 rounded-md font-label uppercase text-sm tracking-widest copper-glow hover:scale-105 transition-all duration-500 text-center">
@@ -253,11 +260,21 @@ Explore
 </div>
 </div>
 <!-- Right: iPhone Mockup -->
+<!-- v1.1 capture: Hero mockup is the app's FRONT DOOR — MainScene
+     (journal-primary view). What user sees seconds after opening
+     Skein. Closed journal book centred on the textured table, with
+     the deck peeking from the right edge. This is the iconic
+     composition that differentiates Skein from every tarot app
+     (which lead with card spreads). Use witch theme parchment —
+     the warm dark obsidian + copper reads strongest against the
+     void hero background, and the bookmark ribbon literally is
+     "the thread to pull". See LANDING_PAGE_BRIEF.md §0.5 Shot 1 for
+     full capture spec. Capture at iPhone 16 Pro Max 1290×2796. -->
 <div class="flex-1 flex justify-center md:justify-end">
 <div class="iphone-frame animate-breathe" style="width: 280px; height: 570px;">
 <div class="iphone-notch"></div>
 <div class="iphone-screen">
-<img alt="SKEIN main screen" src="images/screenshots/main-screen.webp"/>
+<img alt="Skein — a journal book closed on a textured table, ready to be opened" src="images/screenshots/v2-hero-mainscene.webp"/>
 </div>
 </div>
 </div>
@@ -281,8 +298,8 @@ Explore
 </div>
 <div class="space-y-6 text-center md:text-left group">
 <span class="material-symbols-outlined text-4xl text-[#C47D5A] block mb-4 group-hover:scale-110 transition-transform">auto_stories</span>
-<h3 class="font-serif text-3xl text-[#F0EDE5]">Your reading</h3>
-<p class="text-[#C8C3B8] leading-relaxed">Keywords, symbols, and reflection prompts — not predictions. The card holds a mirror. What you see in it is yours alone.</p>
+<h3 class="font-serif text-3xl text-[#F0EDE5]">Your reflection</h3>
+<p class="text-[#C8C3B8] leading-relaxed">Keywords, symbols, and reflection prompts — never predictions. The card holds a mirror. What you see in it is yours to write down.</p>
 </div>
 </div>
 </section>
@@ -290,58 +307,92 @@ Explore
 <section id="screens" class="py-32 overflow-hidden bg-surface">
 <div class="max-w-7xl mx-auto mb-16 text-center px-8">
 <h2 class="font-serif text-4xl md:text-5xl text-[#F0EDE5]">See It in Action.</h2>
-<p class="mt-4 font-label text-xs uppercase tracking-[0.3em] text-[#C47D5A]">Swipe through the SKEIN experience</p>
+<p class="mt-4 font-label text-xs uppercase tracking-[0.3em] text-[#C47D5A]">Five moments from the Skein practice</p>
 </div>
-<div class="flex gap-4 overflow-x-auto pb-12 pl-6 pr-6 lg:pl-[max(2rem,calc((100vw-1280px)/2))] lg:pr-8 hide-scrollbar snap-x cursor-grab active:cursor-grabbing" id="carousel">
-<!-- 1: Star Sky — user opens the app -->
+<!-- v2 carousel — reordered to lead with v1.1 journal-primary features.
+     Each slot needs a fresh capture from the v1.1-journal-primary
+     branch at iPhone 16 Pro Max 1290×2796. Capture spec is in the
+     comment above each <img>. Symmetric horizontal padding (was
+     asymmetric lg:pr-8 only) so the row stays visually centred on
+     the page on wide viewports. `justify-center` centres the row
+     when the 5 mockups fit without scrolling (desktop ≥1280px) and
+     is a no-op when they overflow (mobile). -->
+<div class="flex gap-4 overflow-x-auto pb-12 pl-6 pr-6 lg:pl-[max(2rem,calc((100vw-1280px)/2))] lg:pr-[max(2rem,calc((100vw-1280px)/2))] hide-scrollbar snap-x cursor-grab active:cursor-grabbing lg:justify-center" id="carousel">
+<!-- 01. Physical-deck companion — the most unique-functionality
+     signal we can lead with for 4.3(b) appeal. Capture: open My Decks
+     (Settings → My Decks or via deck attribution flow). Show 2 or 3
+     registered paper decks with names and optional photos (e.g.
+     "Rider-Waite (1971)", "Wild Unknown", "Marseille"). Tap one to
+     reveal the per-deck Pattern Mirror summary if possible — otherwise
+     the list view alone is the differentiator. Witch theme parchment
+     in the background. -->
 <div class="flex-shrink-0 snap-center">
-<div class="iphone-frame" style="width: 280px; height: 570px;">
+<div class="iphone-frame iphone-frame--carousel">
 <div class="iphone-notch"></div>
 <div class="iphone-screen">
-<img alt="Star Sky — your sanctuary space" src="images/screenshots/star-sky.webp"/>
+<img alt="Physical deck companion — register the paper decks you own and track them alongside digital draws" src="images/screenshots/v2-physical-decks.webp"/>
 </div>
 </div>
-<p class="text-center mt-6 font-label text-[10px] uppercase tracking-widest text-[#C8C3B8]">01. Your Sanctuary</p>
+<p class="text-center mt-6 font-label text-[10px] uppercase tracking-widest text-[#C8C3B8]">01. Your Paper Deck</p>
 </div>
-<!-- 2: Shuffle — cards scatter on the table -->
+<!-- 02. Your Ritual — the moment of choosing a card from the deck.
+     Capture is the picking interaction (drag-to-choose flow with the
+     fan of card backs at the bottom + a card lifted toward the slot
+     in the centre). Renamed from "Your Daily Card" — "Ritual" frames
+     the user agency + tactile mechanic, not the result. -->
 <div class="flex-shrink-0 snap-center">
-<div class="iphone-frame" style="width: 280px; height: 570px;">
+<div class="iphone-frame iphone-frame--carousel">
 <div class="iphone-notch"></div>
 <div class="iphone-screen">
-<img alt="Physics-based card shuffle on the table" src="images/screenshots/shuffle.webp"/>
+<img alt="Drawing a card from the deck fan — the ritual moment" src="images/screenshots/v2-card-draw.webp"/>
 </div>
 </div>
-<p class="text-center mt-6 font-label text-[10px] uppercase tracking-widest text-[#C8C3B8]">02. Your Shuffle</p>
+<p class="text-center mt-6 font-label text-[10px] uppercase tracking-widest text-[#C8C3B8]">02. Your Ritual</p>
 </div>
-<!-- 3: Fan Spread — user picks cards -->
+<!-- 03. Journal feed — readings + free entries on themed parchment.
+     Capture: open Journal from the journal-primary scene. Equip the
+     witch theme for visible parchment character (or botanical for
+     softer feel). At least 4-5 entries visible with date headers,
+     thumbnails for readings, free-entry preview text for a journal
+     entry. Header shows the Pattern Mirror icon (stats) + add (+)
+     button + filter (search) chip. -->
 <div class="flex-shrink-0 snap-center">
-<div class="iphone-frame" style="width: 280px; height: 570px;">
+<div class="iphone-frame iphone-frame--carousel">
 <div class="iphone-notch"></div>
 <div class="iphone-screen">
-<img alt="Card fan spread on the table" src="images/screenshots/fan-spread-5.webp"/>
+<img alt="Skein journal feed — readings and free entries on themed parchment" src="images/screenshots/v2-journal-feed.webp"/>
 </div>
 </div>
-<p class="text-center mt-6 font-label text-[10px] uppercase tracking-widest text-[#C8C3B8]">03. Your Spread</p>
+<p class="text-center mt-6 font-label text-[10px] uppercase tracking-widest text-[#C8C3B8]">03. Your Journal</p>
 </div>
-<!-- 4: Card Reveal — reading result -->
+<!-- 04. Voice reflection — mic overlay with the scrying-sphere
+     ripple. Capture: open any reading detail or free-entry composer,
+     tap the mic button to enter voice mode. Wait until the orb starts
+     pulsing (active recording). Capture mid-pulse so the ripples are
+     visible; transcript ribbon at the bottom can show a real phrase
+     in EN. The overlay should be the focal point. -->
 <div class="flex-shrink-0 snap-center">
-<div class="iphone-frame" style="width: 280px; height: 570px;">
+<div class="iphone-frame iphone-frame--carousel">
 <div class="iphone-notch"></div>
 <div class="iphone-screen">
-<img alt="Card reveal with interpretation" src="images/screenshots/reveal.webp"/>
+<img alt="Voice reflection — scrying-sphere overlay pulsing to your voice while dictating an entry" src="images/screenshots/v2-voice-reflection.webp"/>
 </div>
 </div>
-<p class="text-center mt-6 font-label text-[10px] uppercase tracking-widest text-[#C8C3B8]">04. Your Reading</p>
+<p class="text-center mt-6 font-label text-[10px] uppercase tracking-widest text-[#C8C3B8]">04. Your Voice</p>
 </div>
-<!-- 5: Shop — customization -->
+<!-- 05. Hand-illustrated decks — all 4 deck backs side by side. Frame
+     is "art collection", not "deck product". Capture: open Shop →
+     Decks tab, scroll so all 4 deck thumbs (Copper baseline + Classic
+     + Whiskered + Moonlit) are visible together. No "NEW" badges
+     (equip then unequip to clear). No pricing overlays. -->
 <div class="flex-shrink-0 snap-center">
-<div class="iphone-frame" style="width: 280px; height: 570px;">
+<div class="iphone-frame iphone-frame--carousel">
 <div class="iphone-notch"></div>
 <div class="iphone-screen">
-<img alt="Deck shop with cosmetic customization" src="images/screenshots/shop.webp"/>
+<img alt="Four illustrated card decks side by side in the Skein shop" src="images/screenshots/v2-decks-gallery.webp"/>
 </div>
 </div>
-<p class="text-center mt-6 font-label text-[10px] uppercase tracking-widest text-[#C8C3B8]">05. Your Customization</p>
+<p class="text-center mt-6 font-label text-[10px] uppercase tracking-widest text-[#C8C3B8]">05. Your Aesthetic</p>
 </div>
 </div>
 <div class="flex justify-center gap-2 mt-2 pb-4 md:hidden" id="carousel-dots">
@@ -371,7 +422,13 @@ Explore
 <div class="iphone-frame rotate-3" style="width: 280px; height: 570px;">
 <div class="iphone-notch"></div>
 <div class="iphone-screen">
-<img alt="Moon phase and astrological context in SKEIN" src="images/screenshots/moon-phase.webp"/>
+<!-- v1.1 capture: keep using the Star Sky / celestial screen. Open
+     the upper Star Sky pane (swipe up from MainScene), make sure the
+     moon phase ring + retrograde indicators are visible. Same screen
+     as v1.0 — surface unchanged in v1.1, no recapture strictly
+     needed, but if reshooting, ensure no v1.0 chrome elements
+     persist. -->
+<img alt="Moon phase and astrological context — your celestial weather" src="images/screenshots/v2-celestial.webp"/>
 </div>
 </div>
 </div>
@@ -390,26 +447,80 @@ Explore
 <div class="iphone-frame -rotate-2" style="width: 260px; height: 530px;">
 <div class="iphone-notch"></div>
 <div class="iphone-screen">
-<img alt="Parchment journal with readings history" src="images/screenshots/journal.webp"/>
+<!-- v1.1 capture: Journal section iPhone — show a journal entry
+     OPEN in detail view (different from the feed in shot 02 of the
+     carousel). Reflection body filled with ~80 words, photo
+     attachment visible, theme chip selected. Use botanical theme
+     here (softer, complements the section heading "Your Practice,
+     Written Down"). -->
+<img alt="Journal entry detail — three-card reading with theme chip, question, and reflection" src="images/screenshots/v2-journal-detail.webp"/>
 </div>
 </div>
 </div>
 <!-- Feature cards right -->
 <div class="flex-1 grid grid-cols-1 gap-6">
 <div class="glass p-8 rounded-lg space-y-3 border border-[#1A1A24] group">
-<span class="material-symbols-outlined text-3xl text-[#C47D5A] block group-hover:scale-110 transition-transform">edit_note</span>
+<span class="material-symbols-outlined text-3xl text-[#C47D5A] inline-block leading-none origin-left group-hover:scale-110 transition-transform">edit_note</span>
 <h3 class="font-serif text-2xl text-[#F0EDE5]">Physical Deck Companion</h3>
 <p class="text-sm text-[#C8C3B8] leading-relaxed">Already have a real deck? Pick the cards you pulled, add a reflection, and keep everything in one private journal — digital and physical together.</p>
 </div>
 <div class="glass p-8 rounded-lg space-y-3 border border-[#1A1A24] group">
-<span class="material-symbols-outlined text-3xl text-[#C47D5A] block group-hover:scale-110 transition-transform">local_fire_department</span>
+<span class="material-symbols-outlined text-3xl text-[#C47D5A] inline-block leading-none origin-left group-hover:scale-110 transition-transform">mic</span>
+<h3 class="font-serif text-2xl text-[#F0EDE5]">Voice &amp; Photo Capture</h3>
+<p class="text-sm text-[#C8C3B8] leading-relaxed">Dictate a reflection when typing breaks the spell — speech is transcribed on-device, never uploaded. Attach a photo of your altar, a candle, or your paper deck. The journal goes where your day goes.</p>
+</div>
+<div class="glass p-8 rounded-lg space-y-3 border border-[#1A1A24] group">
+<span class="material-symbols-outlined text-3xl text-[#C47D5A] inline-block leading-none origin-left group-hover:scale-110 transition-transform">local_fire_department</span>
 <h3 class="font-serif text-2xl text-[#F0EDE5]">Streak &amp; Ritual Rhythm</h3>
 <p class="text-sm text-[#C8C3B8] leading-relaxed">A daily streak tracks your commitment without pressure. Miss a day? Streak Freeze has your back. The goal is consistency, not perfection.</p>
 </div>
 <div class="glass p-8 rounded-lg space-y-3 border border-[#1A1A24] group">
-<span class="material-symbols-outlined text-3xl text-[#C47D5A] block group-hover:scale-110 transition-transform">auto_stories</span>
+<span class="material-symbols-outlined text-3xl text-[#C47D5A] inline-block leading-none origin-left group-hover:scale-110 transition-transform">auto_stories</span>
 <h3 class="font-serif text-2xl text-[#F0EDE5]">Reflections Over Time</h3>
 <p class="text-sm text-[#C8C3B8] leading-relaxed">Write what each card meant to you. A week later, re-read it. The journal isn't about the cards — it's about who you were when you drew them.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- 4.5 Pattern Mirror — v1.1 retrospective analytics over the user's own journal -->
+<section id="pattern-mirror" class="py-32 px-8 bg-surface-container-lowest">
+<div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-24 items-center">
+<div class="space-y-8">
+<p class="font-label text-xs uppercase tracking-[0.4em] text-[#C47D5A]">Pattern Mirror</p>
+<h2 class="font-serif text-5xl text-[#F0EDE5] leading-tight">The rhythms of <br/>your practice.</h2>
+<p class="text-xl text-[#C8C3B8] leading-relaxed">A heatmap of every day you've shown up. The cards that keep returning. The archetypes you haven't yet drawn. Self-knowledge over time — never prediction.</p>
+<div class="grid grid-cols-2 gap-6 pt-4">
+<div class="space-y-2">
+<p class="font-label text-xs text-[#C47D5A] uppercase tracking-widest">Calendar Heatmap</p>
+<p class="text-sm text-[#C8C3B8]">Every day you drew a card, mapped onto the month. Streaks visible at a glance.</p>
+</div>
+<div class="space-y-2">
+<p class="font-label text-xs text-[#C47D5A] uppercase tracking-widest">Most Drawn</p>
+<p class="text-sm text-[#C8C3B8]">The cards that keep finding you. With Plus, narrow by deck, category, or time window.</p>
+</div>
+<div class="space-y-2">
+<p class="font-label text-xs text-[#C47D5A] uppercase tracking-widest">Unexplored</p>
+<p class="text-sm text-[#C8C3B8]">The archetypes that haven't yet appeared in your practice. A gentle nudge toward the unknown.</p>
+</div>
+<div class="space-y-2">
+<p class="font-label text-xs text-[#C47D5A] uppercase tracking-widest">Suit &amp; Reversal Breakdown</p>
+<p class="text-sm text-[#C8C3B8]">What energies dominate your last 90 days. Honest data, no horoscope.</p>
+</div>
+</div>
+</div>
+<div class="relative flex items-center justify-center">
+<div class="iphone-frame copper-glow" style="width: 280px; height: 570px;">
+<div class="iphone-notch"></div>
+<div class="iphone-screen">
+<!-- v1.1 capture: Pattern Mirror — DEEP view, different from
+     carousel slot 01 which shows the dashboard. Scroll down past
+     the heatmap + most-drawn rail; capture the Unexplored Grid or
+     the Suit Distribution / Reversal Rate section, with the
+     "Pattern Mirror Pro" gate-teaser visible at the bottom (so we
+     hint at the Plus tier without being pushy). Plus active so no
+     overlay covers the data. -->
+<img alt="Pattern Mirror — most-drawn cards, card combinations, and suit breakdown over time" src="images/screenshots/v2-pattern-mirror-deep.webp"/>
 </div>
 </div>
 </div>
@@ -420,13 +531,13 @@ Explore
 <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-24 items-center">
 <div class="order-2 md:order-1 relative h-[600px] flex items-center justify-center">
 <div class="w-64 bg-[#1A1A24] rounded-lg border border-[#C47D5A]/20 copper-glow overflow-hidden group">
-<img alt="The Star — Major Arcana XVII" class="w-full h-auto block grayscale opacity-60 group-hover:opacity-100 group-hover:grayscale-0 transition-all duration-500" src="images/star.jpg"/>
+<img alt="The Star — an archetypal card" class="w-full h-auto block grayscale opacity-60 group-hover:opacity-100 group-hover:grayscale-0 transition-all duration-500" src="images/star.jpg"/>
 </div>
 <div class="absolute top-10 left-10 w-32 h-48 bg-[#1A1A24]/40 border border-[#1A1A24] -rotate-12 rounded-md blur-[2px]"></div>
 <div class="absolute bottom-10 right-10 w-32 h-48 bg-[#1A1A24]/40 border border-[#1A1A24] rotate-12 rounded-md blur-[2px]"></div>
 </div>
 <div class="order-1 md:order-2 space-y-8">
-<h2 class="font-serif text-5xl text-[#F0EDE5]">78 Keys to the <br/>Inward Path.</h2>
+<h2 class="font-serif text-5xl text-[#F0EDE5]">78 archetypes for <br/>reflection.</h2>
 <div class="space-y-6 text-[#C8C3B8]">
 <div class="pb-6 border-b border-[#1A1A24] space-y-2">
 <p class="font-label text-xs text-[#C47D5A] uppercase tracking-widest">Keywords</p>
@@ -455,46 +566,77 @@ Explore
 </div>
 </section>
 <!-- 7. The Decks -->
-<section id="decks" class="py-32 px-8">
+<!-- 8. Customize your practice — v1.1 rework of the old "Curated
+     Archetypes" deck-only section. Reframes the visual variety as
+     "total customization" (journal cover + deck + reading table +
+     ambient effect) rather than "collect 4 decks". Aligns with the
+     Plus subscription pitch ("personalize your practice") and keeps
+     the page away from collection / divination framing. -->
+<section id="customize" class="py-32 px-8">
 <div class="max-w-7xl mx-auto space-y-16">
-<div class="text-center space-y-4">
-<h2 class="font-serif text-5xl text-[#F0EDE5]">Curated Archetypes</h2>
-<p class="font-label text-xs uppercase tracking-widest text-[#C8C3B8]">Switch your aesthetic focus anytime</p>
+<div class="text-center space-y-4 max-w-3xl mx-auto">
+<p class="font-label text-xs uppercase tracking-[0.5em] text-[#C47D5A]">Make Skein yours</p>
+<h2 class="font-serif text-5xl text-[#F0EDE5] leading-tight">A ritual that fits<br/>your aesthetic.</h2>
+<p class="text-lg text-[#C8C3B8] leading-relaxed">Pick a journal cover, choose your card art, set the surface your cards land on. Free to start; cosmetic upgrades when a particular palette starts speaking to you.</p>
 </div>
-<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-<!-- Deck 1 -->
-<div class="group relative aspect-auto overflow-hidden rounded-lg">
-<img alt="The Copper Deck — Fool card" class="w-full h-full object-fill block transition-transform duration-700 group-hover:scale-110" src="images/fool.jpg"/>
-<div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent flex flex-col justify-end p-6">
-<h4 class="font-serif text-2xl text-[#F0EDE5]">The Copper</h4>
-<p class="font-label text-[10px] uppercase tracking-widest text-[#C47D5A]">SKEIN Standard</p>
+<!-- 3-axis customization grid: journal themes / card decks / reading
+     tables. Replaces the old 4-deck "Fool" grid. Each axis points to
+     an upgrade tier signalled by the bottom row — softens the deck-
+     count emphasis Apple flagged in v1.0. -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<!-- Axis 1: Journal themes -->
+<!-- v1.1 capture: a flat-lay composition of 4-5 journal covers side
+     by side OR a Shop → Themes tab capture showing the theme picker
+     with the 5 journals (Leather Grimoire / Witch's Grimoire / Dark
+     Academia / Botanical Herbalist / Stellar Atlas) in a row. Cover
+     thumbnails should be visible enough to convey the variety. -->
+<!-- Each card: image area (fixed 4:5 aspect) ABOVE text area (auto
+     height). Replaces the previous overlay design where the text
+     sat inside the image bottom-third via gradient mask — that
+     overflowed on tablet (3-column narrow cards) and pushed text
+     up over the image on mobile (single column, dense copy).
+     Now image stays clean at 4:5 always; text flows in its own
+     padded container below. Glass bg carries both regions. -->
+<div class="group glass rounded-lg border border-[#1A1A24] overflow-hidden flex flex-col">
+  <div class="relative aspect-[4/5] overflow-hidden">
+    <img alt="Five journal cover styles — from leather grimoire to stellar atlas" class="w-full h-full object-cover block transition-transform duration-700 group-hover:scale-105" src="images/customize/v2-themes-flat-lay.webp"/>
+    <!-- Soft fade at the bottom of the image area into the text
+         area below — keeps the visual transition intentional. -->
+    <div class="absolute inset-x-0 bottom-0 h-1/4 bg-gradient-to-t from-[#1A1A24] to-transparent pointer-events-none"></div>
+  </div>
+  <div class="p-6 space-y-2">
+    <p class="font-label text-[10px] uppercase tracking-widest text-[#C47D5A]">Five Themes</p>
+    <h4 class="font-serif text-2xl text-[#F0EDE5]">Journal Covers</h4>
+    <p class="text-sm text-[#C8C3B8] leading-relaxed">Leather grimoire, witch's grimoire, dark academia, botanical herbalist, and the Plus-exclusive Stellar Atlas. Each ships with its own parchment and ornamental glyphs.</p>
+  </div>
+</div>
+<div class="group glass rounded-lg border border-[#1A1A24] overflow-hidden flex flex-col">
+  <div class="relative aspect-[4/5] overflow-hidden">
+    <img alt="Four illustrated card-back styles" class="w-full h-full object-cover block transition-transform duration-700 group-hover:scale-105" src="images/customize/v2-decks-row.webp"/>
+    <div class="absolute inset-x-0 bottom-0 h-1/4 bg-gradient-to-t from-[#1A1A24] to-transparent pointer-events-none"></div>
+  </div>
+  <div class="p-6 space-y-2">
+    <p class="font-label text-[10px] uppercase tracking-widest text-[#C47D5A]">Skein's Decks</p>
+    <h4 class="font-serif text-2xl text-[#F0EDE5]">Card Decks</h4>
+    <p class="text-sm text-[#C8C3B8] leading-relaxed">Four illustrated decks — Skein's copper baseline, a classical line-art deck, a feline path deck, and a shadow-work moonlit deck — plus a growing library of nine card-back styles (gothic flora, lunar cat, eclipse corona, starry night, and more). Mix and match any deck with any back.</p>
+  </div>
+</div>
+<div class="group glass rounded-lg border border-[#1A1A24] overflow-hidden flex flex-col">
+  <div class="relative aspect-[4/5] overflow-hidden">
+    <img alt="Four reading-table textures" class="w-full h-full object-cover block transition-transform duration-700 group-hover:scale-105" src="images/customize/v2-tables-grid.webp"/>
+    <div class="absolute inset-x-0 bottom-0 h-1/4 bg-gradient-to-t from-[#1A1A24] to-transparent pointer-events-none"></div>
+  </div>
+  <div class="p-6 space-y-2">
+    <p class="font-label text-[10px] uppercase tracking-widest text-[#C47D5A]">Surfaces &amp; Atmosphere</p>
+    <h4 class="font-serif text-2xl text-[#F0EDE5]">Tables &amp; Effects</h4>
+    <p class="text-sm text-[#C8C3B8] leading-relaxed">Nine reading surfaces — polished wood, deep velvet, cold marble, starry night, ancient monolith, mossy altar, glacial frost, lunar reflection, abyssal void — paired with four ambient flip effects (golden sparks, mystic smoke, celestial fire, moonlight glow) that play in the moment a card turns.</p>
+  </div>
 </div>
 </div>
-<!-- Deck 2 -->
-<div class="group relative aspect-auto overflow-hidden rounded-lg">
-<img alt="The Classic Deck — Fool card" class="w-full h-full object-fill block transition-transform duration-700 group-hover:scale-110" src="images/classic_fool.jpg"/>
-<div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent flex flex-col justify-end p-6">
-<h4 class="font-serif text-2xl text-[#F0EDE5]">The Classic</h4>
-<p class="font-label text-[10px] uppercase tracking-widest text-[#C47D5A]">Rider-Waite-Smith</p>
-</div>
-</div>
-<!-- Deck 3 -->
-<div class="group relative aspect-auto overflow-hidden rounded-lg">
-<img alt="Whiskered Arcana Deck — Fool card" class="w-full h-full object-fill block transition-transform duration-700 group-hover:scale-110" src="images/cat_fool.jpg"/>
-<div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent flex flex-col justify-end p-6">
-<h4 class="font-serif text-2xl text-[#F0EDE5]">Whiskered Arcana</h4>
-<p class="font-label text-[10px] uppercase tracking-widest text-[#C47D5A]">The Feline Path</p>
-</div>
-</div>
-<!-- Deck 4 -->
-<div class="group relative aspect-auto overflow-hidden rounded-lg">
-<img alt="Moonlit Lore Deck — Fool card" class="w-full h-full object-fill block transition-transform duration-700 group-hover:scale-110" src="images/moonlore_fool.jpg"/>
-<div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent flex flex-col justify-end p-6">
-<h4 class="font-serif text-2xl text-[#F0EDE5]">Moonlit Lore</h4>
-<p class="font-label text-[10px] uppercase tracking-widest text-[#C47D5A]">Shadow Work Edition</p>
-</div>
-</div>
-</div>
+<!-- Pricing nudge — soft, not the loudest copy on the page -->
+<p class="text-center text-xs text-[#8A8378] leading-relaxed max-w-xl mx-auto">
+Every cosmetic is a one-time purchase from $0.99. The core practice (daily card, journal, the default theme, baseline deck, and Pattern Mirror) is free, always. <a href="#plus" class="text-[#C47D5A]">Skein Plus</a> bundles the Stellar Atlas journal, journal search, archive export, and Pattern Mirror Pro for $4.99/mo or $39.99/yr.
+</p>
 </div>
 </section>
 <!-- 8. Gamification / Tiers -->
@@ -544,25 +686,111 @@ Explore
 </div>
 </div>
 </section>
+<!-- 8.5 Skein Plus — subscription tier (Apple 3.1.2(a) public disclosure) -->
+<section id="plus" class="py-32 px-8 bg-surface-container-low border-y border-[#1A1A24]">
+<div class="max-w-7xl mx-auto">
+<div class="text-center mb-16 space-y-4">
+<p class="font-label text-xs uppercase tracking-[0.5em] text-[#C47D5A]">Skein Plus</p>
+<h2 class="font-serif text-5xl text-[#F0EDE5] leading-tight">For the practice<br/>that runs deep.</h2>
+<p class="text-xl text-[#C8C3B8] max-w-2xl mx-auto leading-relaxed">An optional subscription that unlocks the tools serious journalers actually use. The daily ritual stays free forever.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
+<div class="glass p-8 rounded-lg space-y-3 border border-[#1A1A24]">
+<span class="material-symbols-outlined text-3xl text-[#C47D5A] block">analytics</span>
+<h3 class="font-serif text-2xl text-[#F0EDE5]">Pattern Mirror Pro</h3>
+<p class="text-sm text-[#C8C3B8] leading-relaxed">90-day and all-time windows, plus category and per-deck filters on the analytics dashboard. See deeper into your own practice.</p>
+</div>
+<div class="glass p-8 rounded-lg space-y-3 border border-[#1A1A24]">
+<span class="material-symbols-outlined text-3xl text-[#C47D5A] block">search</span>
+<h3 class="font-serif text-2xl text-[#F0EDE5]">Journal Search &amp; Filter</h3>
+<p class="text-sm text-[#C8C3B8] leading-relaxed">Find any past entry by word, theme, deck, or date. Build collections by category — "all my Tower entries from last year".</p>
+</div>
+<div class="glass p-8 rounded-lg space-y-3 border border-[#1A1A24]">
+<span class="material-symbols-outlined text-3xl text-[#C47D5A] block">file_download</span>
+<h3 class="font-serif text-2xl text-[#F0EDE5]">Archive Export</h3>
+<p class="text-sm text-[#C8C3B8] leading-relaxed">Your full journal as CSV or PDF, on demand. Yours to keep, share, print, or migrate away. No lock-in.</p>
+</div>
+<div class="glass p-8 rounded-lg space-y-3 border border-[#1A1A24]">
+<span class="material-symbols-outlined text-3xl text-[#C47D5A] block">library_books</span>
+<h3 class="font-serif text-2xl text-[#F0EDE5]">Unlimited Physical Decks</h3>
+<p class="text-sm text-[#C8C3B8] leading-relaxed">Register every paper deck you own. Free tier covers two; Plus is unlimited. Pattern Mirror breaks down patterns per deck.</p>
+</div>
+<div class="glass p-8 rounded-lg space-y-3 border border-[#1A1A24]">
+<span class="material-symbols-outlined text-3xl text-[#C47D5A] block">menu_book</span>
+<h3 class="font-serif text-2xl text-[#F0EDE5]">Stellar Atlas Journal</h3>
+<p class="text-sm text-[#C8C3B8] leading-relaxed">A Plus-exclusive journal theme: midnight silk with gold constellations. The most premium cover in the catalogue.</p>
+</div>
+<div class="glass p-8 rounded-lg space-y-3 border border-[#1A1A24]">
+<span class="material-symbols-outlined text-3xl text-[#C47D5A] block">cloud_done</span>
+<h3 class="font-serif text-2xl text-[#F0EDE5]">Cloud Backup</h3>
+<p class="text-sm text-[#C8C3B8] leading-relaxed">Your journal mirrors to the cloud automatically. Lost phone, new device, fresh install — your entries come back with you.</p>
+</div>
+</div>
+<!-- Pricing — Apple Guideline 3.1.2(a) requires public auto-renewal disclosure -->
+<div class="max-w-3xl mx-auto text-center space-y-6">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<div class="glass p-8 rounded-lg space-y-3 border border-[#1A1A24]">
+<p class="font-label text-xs uppercase tracking-widest text-[#C8C3B8]">Monthly</p>
+<p class="font-serif text-4xl text-[#F0EDE5]">$4.99<span class="text-lg text-[#C8C3B8]">/mo</span></p>
+<p class="text-xs text-[#8A8378]">Cancel anytime</p>
+</div>
+<div class="glass p-8 rounded-lg space-y-3 border border-[#C47D5A]/40 copper-glow">
+<p class="font-label text-xs uppercase tracking-widest text-[#C47D5A]">Yearly — save 33%</p>
+<p class="font-serif text-4xl text-[#F0EDE5]">$39.99<span class="text-lg text-[#C8C3B8]">/yr</span></p>
+<p class="text-xs text-[#8A8378]">≈ $3.33/mo, billed once a year</p>
+</div>
+</div>
+<p class="text-xs text-[#8A8378] leading-relaxed pt-4 max-w-2xl mx-auto">
+Subscriptions auto-renew until cancelled at least 24 hours before the end of the current period. Manage or cancel in your <em>Apple ID → Subscriptions</em> or <em>Google Play → Subscriptions</em> settings. Local prices may vary; final price and currency are shown on the in-app paywall before purchase. See our <a href="terms.html#3.2" class="text-[#C47D5A]">Terms</a> and <a href="privacy.html" class="text-[#C47D5A]">Privacy Policy</a> for full details.
+</p>
+</div>
+</div>
+</section>
+<!-- 8.7 Your Skein — emotional peak between Plus pitch and Pledge.
+     Text-only composition (mirrors the existing "The magic was never
+     in the cards" section style) so it reads as the page's
+     introspective moment, not another feature card. Vertical padding
+     tightened from py-48 → py-32 so the section doesn't read as
+     half-empty before the next section starts. -->
+<section id="your-skein" class="py-32 md:py-40 px-8 text-center relative overflow-hidden">
+<!-- Soft atmospheric bg — same hero-background.webp as elsewhere on
+     the page so the section sits inside the same universe. -->
+<div class="absolute inset-0 z-0 opacity-40">
+<img alt="" aria-hidden="true" class="w-full h-full object-cover mix-blend-screen" src="images/hero-background.webp"/>
+</div>
+<!-- Edge-fade only at the very top (entering from #plus) and very
+     bottom (leaving into #pledge). Middle 70% lets the starfield
+     stay visible, so the lower half no longer reads as a dead
+     dark block. -->
+<div class="absolute inset-0 z-0 bg-gradient-to-b from-[#0A0A0F] from-0% via-transparent via-25% to-[#0A0A0F] to-100%" style="background: linear-gradient(to bottom, #0A0A0F 0%, transparent 18%, transparent 82%, #0A0A0F 100%);"></div>
+<div class="relative z-10 max-w-3xl mx-auto space-y-10">
+<p class="font-label text-xs uppercase tracking-[0.5em] text-[#C47D5A]">Over time</p>
+<h2 class="font-serif text-5xl md:text-7xl text-[#F0EDE5] leading-tight">Your Skein.</h2>
+<p class="font-serif text-lg md:text-xl text-[#C8C3B8] leading-relaxed">
+A daily card. A reflection. A pattern emerging across months. The themes you pick, the decks you draw from, the words you write — they make a journal nobody else has. Your Skein is the one you build.
+</p>
+<div class="w-24 h-[1px] bg-[#C47D5A]/40 mx-auto mt-12"></div>
+</div>
+</section>
 <!-- 9. Belief Statement -->
 <section id="pledge" class="py-48 px-8 text-center max-w-5xl mx-auto">
 <h3 class="font-label text-xs uppercase tracking-[0.5em] text-[#C47D5A] mb-12">The Sanctuary Pledge</h3>
 <div class="grid grid-cols-1 md:grid-cols-2 gap-y-16 gap-x-24 text-left">
 <div class="space-y-4">
-<p class="font-serif text-4xl text-[#F0EDE5]">Free to practice.</p>
-<p class="text-[#C8C3B8]">Draw cards, write reflections, track your streaks — the core ritual is free and always will be. Optional cosmetic decks in the Shop for those who want a different aesthetic.</p>
+<p class="font-serif text-4xl text-[#F0EDE5]">Free to start.</p>
+<p class="text-[#C8C3B8]">Daily card, journal entries, streak — the core ritual is free and always will be. Skein Plus adds journal search, archive export, unlimited physical decks, and Pattern Mirror Pro for those who go deeper.</p>
 </div>
 <div class="space-y-4">
 <p class="font-serif text-4xl text-[#F0EDE5]">Offline.</p>
-<p class="text-[#C8C3B8]">Your practice doesn't need a signal. Take your ritual into the woods, the mountains, or the dead of night.</p>
+<p class="text-[#C8C3B8]">Your practice doesn't need a signal. Take your ritual into the woods, the mountains, or the dead of night. Sync only if you choose.</p>
 </div>
 <div class="space-y-4">
 <p class="font-serif text-4xl text-[#F0EDE5]">No Ads.</p>
-<p class="text-[#C8C3B8]">A sacred space shouldn't try to sell you detergent. We maintain purity of focus.</p>
+<p class="text-[#C8C3B8]">A reflection space shouldn't try to sell you detergent. We don't run ads, ever.</p>
 </div>
 <div class="space-y-4">
-<p class="font-serif text-4xl text-[#F0EDE5]">No AI readings.</p>
-<p class="text-[#C8C3B8]">The cards are a mirror to your mind, not an output of a machine. Human intuition only.</p>
+<p class="font-serif text-4xl text-[#F0EDE5]">No AI interpretations.</p>
+<p class="text-[#C8C3B8]">The card is a mirror to your mind, not an output of a machine. The app never tells you what a card means; you write your own reflection.</p>
 </div>
 </div>
 </section>
@@ -637,7 +865,7 @@ Explore
 // clear all links when they're the dominant visible section.
 (function () {
   const links = document.querySelectorAll('.nav-link');
-  const sectionIds = ['hero','ritual','screens','celestial','journal','cards','decks','karma','pledge','founder','waitlist'];
+  const sectionIds = ['hero','ritual','screens','celestial','journal','pattern-mirror','cards','customize','plus','your-skein','karma','pledge','founder','waitlist'];
   const sections = sectionIds.map(id => document.getElementById(id)).filter(Boolean);
 
   function activate(sectionId) {
@@ -656,8 +884,10 @@ Explore
   // link inherit from their nearest neighbour above).
   const sectionToNav = {
     hero: null, ritual: 'ritual', screens: 'ritual',
-    celestial: 'ritual', journal: 'journal', cards: 'journal',
-    decks: 'decks', karma: 'decks',
+    celestial: 'ritual', journal: 'journal',
+    'pattern-mirror': 'journal', cards: 'journal',
+    customize: 'customize', plus: 'customize',
+    'your-skein': 'customize', karma: 'customize',
     pledge: null, founder: 'founder', waitlist: 'founder'
   };
 

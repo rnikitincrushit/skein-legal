@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=1200, initial-scale=1"/>
+<title>Composite — Reading Tables (4 textures)</title>
+<!--
+  Final aspect: 4:5 → 1200×1500
+  Output file: docs/legal/site/images/customize/v2-tables-grid.webp
+
+  Composition: 2×2 grid of 4 visually distinct reading table
+  textures, each tile shows a small centered glyph (an 8-point
+  star ornament) so the tile reads as a "ritual surface" rather
+  than just a texture swatch. Dark void around the grid. Bottom
+  ~1/3 reserved for index.html's CSS gradient overlay.
+
+  (v3 note: the "+ ambient effects" burst overlay on the Ice tile
+  was removed — it read as a label on a single tile rather than as
+  a separate-category hint. The site card body text now lists the
+  flip-effect variants explicitly instead.)
+
+  Source assets (4 textures — 1 bundled + 3 user-selected from tables/):
+    src/assets/table/table-texture.jpg                            (Wood baseline — bundled)
+    docs/legal/site/images/customize/tables/table_ice.jpg         (Eternal Frost)
+    docs/legal/site/images/customize/tables/table_moonwater.jpg   (Lunar Reflection)
+    docs/legal/site/images/customize/tables/table_moss.jpg        (Forest Whisper)
+
+  The 4 read as a strong atmospheric set — warm wood baseline + cold
+  ice + moonlit water + mossy forest = full elemental range without
+  being thematically redundant. The star ornament centred on each
+  tile is an inline SVG (currentColor → copper accent). One tile
+  carries a CSS-rendered golden-sparks burst overlay hinting at the
+  "and ambient effects" line on the site card.
+-->
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body {
+    width: 1200px; height: 1500px; overflow: hidden;
+    background: #0A0A0F;
+    font-family: 'Georgia', serif;
+  }
+  /* Starfield bg — same treatment as themes-flat-lay + decks-row
+     for visual consistency across all 3 composites. */
+  .starfield {
+    position: absolute; inset: 0;
+    background-image: url('../images/hero-background.webp');
+    background-size: cover;
+    background-position: center;
+    opacity: 1;
+    mix-blend-mode: screen;
+  }
+  .starfield-overlay {
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse at 50% 45%, transparent 0%, rgba(10, 10, 15, 0.1) 60%, rgba(10, 10, 15, 0.85) 100%),
+      linear-gradient(to bottom, transparent 0%, transparent 60%, rgba(10, 10, 15, 0.7) 100%);
+    pointer-events: none;
+  }
+  .stage {
+    position: relative;
+    width: 100%; height: 100%;
+    padding: 100px 80px 220px;
+    z-index: 2;
+  }
+  .grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    gap: 24px;
+    width: 100%; height: 100%;
+  }
+  .tile {
+    position: relative;
+    overflow: hidden;
+    border-radius: 14px;
+    border: 1px solid rgba(196, 125, 90, 0.20);
+    box-shadow:
+      0 20px 50px rgba(0, 0, 0, 0.5),
+      inset 0 0 0 1px rgba(0, 0, 0, 0.3);
+  }
+  .tile img.texture {
+    display: block;
+    width: 100%; height: 100%;
+    object-fit: cover;
+  }
+  .tile img.broken {
+    background: repeating-linear-gradient(
+      45deg, rgba(196,125,90,0.12), rgba(196,125,90,0.12) 12px,
+      transparent 12px, transparent 24px
+    );
+    color: rgba(240,237,229,0.7);
+    text-align: center;
+    line-height: 100%;
+  }
+  /* Centred star ornament on each tile */
+  .ornament {
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    width: 90px; height: 90px;
+    color: rgba(196, 125, 90, 0.85);
+    filter: drop-shadow(0 0 12px rgba(196, 125, 90, 0.5));
+  }
+  .ornament svg { width: 100%; height: 100%; }
+  /* Subtle dark vignette inside each tile to give the ornament a
+     pool of darker space to sit in */
+  .tile::after {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse at center, rgba(0,0,0,0.35) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  /* Optional flip-effect burst overlay on one tile (top-right) */
+  .burst {
+    position: absolute; inset: 0;
+    background-image:
+      radial-gradient(circle at 30% 40%, rgba(255, 200, 100, 0.4) 0%, transparent 8%),
+      radial-gradient(circle at 60% 35%, rgba(255, 220, 130, 0.5) 0%, transparent 6%),
+      radial-gradient(circle at 50% 55%, rgba(255, 180, 80, 0.35) 0%, transparent 10%),
+      radial-gradient(circle at 70% 60%, rgba(255, 210, 120, 0.45) 0%, transparent 7%),
+      radial-gradient(circle at 40% 65%, rgba(255, 195, 90, 0.4) 0%, transparent 8%);
+    mix-blend-mode: screen;
+    pointer-events: none;
+  }
+  .burst-label {
+    position: absolute;
+    bottom: 18px; left: 50%;
+    transform: translateX(-50%);
+    font-family: 'Georgia', serif;
+    font-size: 13px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: rgba(255, 220, 130, 0.85);
+    text-shadow: 0 0 8px rgba(0, 0, 0, 0.8);
+  }
+  /* Outer dark gradient over the bottom — same as other composites */
+  .vignette {
+    position: absolute; inset: 0;
+    background: linear-gradient(
+      to bottom,
+      transparent 0%, transparent 70%,
+      rgba(10, 10, 15, 0.55) 100%
+    );
+    pointer-events: none;
+  }
+</style>
+</head>
+<body>
+<div class="starfield"></div>
+<div class="starfield-overlay"></div>
+<div class="stage">
+  <div class="grid">
+    <!-- Tile 1: Wood (baseline, bundled) -->
+    <div class="tile">
+      <img class="texture"
+           src="../../../../src/assets/table/table-texture.jpg"
+           alt="Polished wood table"
+           onerror="this.classList.add('broken'); this.alt='[ missing: table-texture.jpg ]';"/>
+    </div>
+    <!-- Tile 2: Ice (Eternal Frost) -->
+    <div class="tile">
+      <img class="texture"
+           src="../images/customize/tables/table_ice.jpg"
+           alt="Eternal Frost — glacial reading table"
+           onerror="this.classList.add('broken'); this.alt='[ missing: table_ice.jpg ]';"/>
+    </div>
+    <!-- Tile 3: Moonwater (Lunar Reflection) -->
+    <div class="tile">
+      <img class="texture"
+           src="../images/customize/tables/table_moonwater.jpg"
+           alt="Lunar Reflection — moonlit water reading table"
+           onerror="this.classList.add('broken'); this.alt='[ missing: table_moonwater.jpg ]';"/>
+    </div>
+    <!-- Tile 4: Moss (Forest Whisper) -->
+    <div class="tile">
+      <img class="texture"
+           src="../images/customize/tables/table_moss.jpg"
+           alt="Forest Whisper — mossy altar reading table"
+           onerror="this.classList.add('broken'); this.alt='[ missing: table_moss.jpg ]';"/>
+    </div>
+  </div>
+  <div class="vignette"></div>
+</div>
+</body>
+</html>
