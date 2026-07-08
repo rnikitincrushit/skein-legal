@@ -54,6 +54,7 @@
     <ul>
       <li><strong>Usage analytics</strong>: We use PostHog (hosted in the EU) to collect anonymized usage data such as screens viewed, features used, and app events. Plus-tier monetization funnel events (paywall opened, subscribe / restore / cancel) carry only the source surface and the chosen tier — never personal data. This helps us improve the App. You may opt out of analytics in Settings.</li>
       <li><strong>Device information</strong>: Device type, operating system version, app version, timezone, and language preference.</li>
+      <li><strong>Crash &amp; performance diagnostics</strong>: We use Sentry to collect crash reports, performance data, and diagnostic session information (such as the screens leading up to an error) so we can reproduce and fix bugs. For signed-in users this may be associated with your account ID. This runs only to keep the App stable — never for advertising.</li>
       <li><strong>Push notification tokens</strong>: If you enable notifications, we store your device's push token to send reminders.</li>
       <li><strong>Subscription status</strong>: If you subscribe to Skein Plus, RevenueCat (our subscription processor) tracks your entitlement status — active / cancelled / expired — so the App can unlock Plus features when you launch it on a new device. Apple processes the actual payment; we never see card numbers or billing addresses.</li>
     </ul>
@@ -103,6 +104,10 @@
           <td>Legitimate interest (Art. 6(1)(f)) — improving the App</td>
         </tr>
         <tr>
+          <td>Crash &amp; performance diagnostics</td>
+          <td>Legitimate interest (Art. 6(1)(f)) — App stability</td>
+        </tr>
+        <tr>
           <td>Purchase verification</td>
           <td>Contract performance (Art. 6(1)(b))</td>
         </tr>
@@ -128,6 +133,7 @@
       <li><strong>Cloud sync</strong>: If you sign in, data is synced to Supabase (servers in the EU — Frankfurt, Germany) for backup and cross-device access.</li>
       <li><strong>Analytics</strong>: PostHog is hosted in the EU (Frankfurt). No personal data leaves the EU.</li>
       <li><strong>Purchase verification</strong>: RevenueCat processes purchase receipts. RevenueCat is a US-based company with EU Standard Contractual Clauses (SCCs) in place for GDPR compliance.</li>
+      <li><strong>Diagnostics</strong>: Sentry processes crash and performance data. Sentry is a US-based company with EU Standard Contractual Clauses (SCCs) in place for GDPR compliance.</li>
       <li><strong>Authentication</strong>: Apple and Google process authentication data under their respective privacy policies and GDPR commitments.</li>
       <li><strong>Cosmetic assets</strong>: Purchased card decks and card backs are cached locally on your device.</li>
     </ul>
@@ -155,6 +161,12 @@
           <td>Analytics</td>
           <td>EU (Frankfurt)</td>
           <td>GDPR-compliant, DPA</td>
+        </tr>
+        <tr>
+          <td>Sentry</td>
+          <td>Crash &amp; performance diagnostics</td>
+          <td>US</td>
+          <td>Standard Contractual Clauses</td>
         </tr>
         <tr>
           <td>RevenueCat</td>
