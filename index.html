@@ -166,11 +166,25 @@ html { scroll-behavior: smooth }
     border-radius: 20px;
     z-index: 10;
 }
-.iphone-screen img {
+.iphone-screen img,
+.iphone-screen video {
+    display: block;
     width: 100%;
     height: 100%;
     object-fit: cover;
 }
+/* Hero: the closed book behind, an open entry in front — the two halves
+   of the app in one glance. */
+.hero-pair { position: relative; width: 430px; height: 620px; }
+.hero-pair .iphone-frame { position: absolute; }
+.hero-pair__back { width: 250px; height: 510px; left: 0; top: 0; transform: rotate(-7deg); }
+.hero-pair__front { width: 260px; height: 530px; right: 0; bottom: 0; transform: rotate(4deg); }
+@media (max-width: 480px) {
+    .hero-pair { width: 330px; height: 500px; }
+    .hero-pair__back { width: 196px; height: 400px; }
+    .hero-pair__front { width: 210px; height: 428px; }
+}
+.ritual-frame { width: 250px; height: 510px; }
 .hide-scrollbar::-webkit-scrollbar { display: none; }
 .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
 .carousel-dot {
@@ -274,7 +288,7 @@ posthog.init('phc_PVNjy8c1zzjKhlbgNU8vcDEECp5dsM4NHR4cQMcQ72G', {
 <div class="space-y-4">
 <h1 class="font-script text-5xl md:text-7xl text-[#C47D5A] leading-tight" style="text-shadow: 0 0 40px rgba(196,125,90,0.3);">Pull the thread.</h1>
 <p class="font-label text-sm uppercase tracking-[0.4em] text-[#C8C3B8]">A daily reflection ritual</p>
-<p class="font-serif text-lg md:text-xl text-[#C8C3B8] leading-relaxed max-w-lg">A private reflection journal built around a single daily card. The deck draws an archetype. You write what it stirs. Pattern Mirror shows the rhythms of your practice over time.</p>
+<p class="font-serif text-lg md:text-xl text-[#C8C3B8] leading-relaxed max-w-lg">A private reflection journal for your daily card. Pull from your own deck — or shuffle in Skein — then write what it stirs. Pattern Mirror shows the rhythms of your practice over time.</p>
 </div>
 <div class="pt-4 flex flex-col sm:flex-row gap-4">
 <a href="https://apps.apple.com/app/skein-practice-journal/id6761774248" target="_blank" rel="noopener" data-store-link="hero" class="inline-block bg-gradient-to-r from-primary-container to-on-primary-fixed-variant text-on-primary px-10 py-4 rounded-md font-label uppercase text-sm tracking-widest copper-glow hover:scale-105 transition-all duration-500 text-center">
@@ -285,22 +299,21 @@ Explore
 </a>
 </div>
 </div>
-<!-- Right: iPhone Mockup -->
-<!-- v1.1 capture: Hero mockup is the app's FRONT DOOR — MainScene
-     (journal-primary view). What user sees seconds after opening
-     Skein. Closed journal book centred on the textured table, with
-     the deck peeking from the right edge. This is the iconic
-     composition that differentiates Skein from every tarot app
-     (which lead with card spreads). Use witch theme parchment —
-     the warm dark obsidian + copper reads strongest against the
-     void hero background, and the bookmark ribbon literally is
-     "the thread to pull". See LANDING_PAGE_BRIEF.md §0.5 Shot 1 for
-     full capture spec. Capture at iPhone 16 Pro Max 1290×2796. -->
+<!-- Right: the front door (closed book on the table) behind the open
+     journal. Captured at 1206×2622, default parchment. -->
 <div class="flex-1 flex justify-center md:justify-end">
-<div class="iphone-frame animate-breathe" style="width: 280px; height: 570px;">
+<div class="hero-pair animate-breathe">
+<div class="iphone-frame hero-pair__back">
 <div class="iphone-notch"></div>
 <div class="iphone-screen">
-<img alt="Skein — a journal book closed on a textured table, ready to be opened" src="images/screenshots/v2-hero-mainscene.webp"/>
+<img alt="Skein — a journal book closed on a textured table, ready to be opened" src="images/screenshots/v3-hero-book.webp"/>
+</div>
+</div>
+<div class="iphone-frame hero-pair__front">
+<div class="iphone-notch"></div>
+<div class="iphone-screen">
+<img alt="The open journal — readings from a paper deck and free entries, each with a line of reflection" src="images/screenshots/v3-journal-feed.webp"/>
+</div>
 </div>
 </div>
 </div>
@@ -309,23 +322,48 @@ Explore
 <span class="material-symbols-outlined text-3xl">expand_more</span>
 </div>
 </section>
-<!-- 2. The 'You' Moment -->
+<!-- 2. Digital ritual — for when the paper deck isn't to hand -->
 <section id="ritual" class="py-32 px-8 bg-surface-container-lowest">
-<div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-16">
-<div class="space-y-6 text-center md:text-left group">
-<span class="material-symbols-outlined text-4xl text-[#C47D5A] block mb-4 group-hover:scale-110 transition-transform">style</span>
-<h3 class="font-serif text-3xl text-[#F0EDE5]">Your shuffle</h3>
-<p class="text-[#C8C3B8] leading-relaxed">Your fingers scatter the deck across the table. Physics moves the cards. You choose which one to turn. The ritual is yours from first touch to last.</p>
+<div class="max-w-7xl mx-auto space-y-20">
+<div class="text-center space-y-6 max-w-2xl mx-auto">
+<p class="font-label text-xs uppercase tracking-[0.3em] text-[#C47D5A]">A digital ritual</p>
+<h2 class="font-serif text-4xl md:text-5xl text-[#F0EDE5] leading-tight">No deck with you?<br/><span class="text-[#C47D5A]">Shuffle in Skein.</span></h2>
+<p class="text-lg md:text-xl text-[#C8C3B8] leading-relaxed">Your own deck comes first — Skein is a journal for it. But on a train, a trip, or a quiet lunch break, the ritual still works here: a hand-illustrated deck, a table that answers your fingers, and the same journal waiting at the end.</p>
 </div>
-<div class="space-y-6 text-center md:text-left group">
-<span class="material-symbols-outlined text-4xl text-[#C47D5A] block mb-4 group-hover:scale-110 transition-transform">touch_app</span>
-<h3 class="font-serif text-3xl text-[#F0EDE5]">Your choice</h3>
-<p class="text-[#C8C3B8] leading-relaxed">Select your path. The interface recedes, leaving only you and the deck. Intuition is the only interface that matters here.</p>
+<div class="flex flex-col md:flex-row justify-center items-center md:items-start gap-16 md:gap-24">
+<figure class="flex flex-col items-center gap-8 max-w-[300px]">
+<div class="iphone-frame ritual-frame">
+<div class="iphone-notch"></div>
+<div class="iphone-screen">
+<video class="ritual-video" muted loop playsinline preload="none" poster="images/ritual/ritual-shuffle-poster.webp" aria-label="Fingers scattering the deck across the table, then gathering it back">
+<source src="images/ritual/ritual-shuffle.mp4" type="video/mp4"/>
+</video>
 </div>
-<div class="space-y-6 text-center md:text-left group">
-<span class="material-symbols-outlined text-4xl text-[#C47D5A] block mb-4 group-hover:scale-110 transition-transform">auto_stories</span>
+</div>
+<figcaption class="text-center space-y-3">
+<h3 class="font-serif text-2xl text-[#F0EDE5]">Your shuffle</h3>
+<p class="text-sm text-[#C8C3B8] leading-relaxed">Scatter the deck with your fingers and gather it back. Real physics, no shuffle button — the cards move the way you move them.</p>
+</figcaption>
+</figure>
+<figure class="flex flex-col items-center gap-8 max-w-[300px]">
+<div class="iphone-frame ritual-frame">
+<div class="iphone-notch"></div>
+<div class="iphone-screen">
+<video class="ritual-video" muted loop playsinline preload="none" poster="images/ritual/ritual-draw-poster.webp" aria-label="Cards pulled from the fan and placed into a three-card spread">
+<source src="images/ritual/ritual-draw.mp4" type="video/mp4"/>
+</video>
+</div>
+</div>
+<figcaption class="text-center space-y-3">
+<h3 class="font-serif text-2xl text-[#F0EDE5]">Your choice</h3>
+<p class="text-sm text-[#C8C3B8] leading-relaxed">Open the fan and drag the cards you're drawn to into a spread. You place every one; nothing is picked for you.</p>
+</figcaption>
+</figure>
+</div>
+<div class="text-center max-w-xl mx-auto space-y-4">
+<span class="material-symbols-outlined text-4xl text-[#C47D5A]">auto_stories</span>
 <h3 class="font-serif text-3xl text-[#F0EDE5]">Your reflection</h3>
-<p class="text-[#C8C3B8] leading-relaxed">Keywords, symbols, and reflection prompts — never predictions. The card holds a mirror. What you see in it is yours to write down.</p>
+<p class="text-[#C8C3B8] leading-relaxed">The spread lands in your journal as an entry, like any reading from a paper deck. Add a question, a theme, and whatever came up — typed or spoken.</p>
 </div>
 </div>
 </section>
@@ -435,10 +473,10 @@ Explore
 <div class="flex-1 space-y-12">
 <div class="inline-flex items-center gap-4 text-[#C47D5A] font-label text-xs uppercase tracking-widest border border-[#C47D5A]/20 px-4 py-2 rounded-full">
 <span class="w-2 h-2 rounded-full bg-[#C47D5A]"></span>
-                        Morning Star Sky
+                        Your Sky
                     </div>
-<h2 class="font-serif text-5xl md:text-6xl text-[#F0EDE5] leading-tight">Aligned with the <br/><span class="text-[#C47D5A]">Celestial Clock.</span></h2>
-<p class="text-xl text-[#C8C3B8] max-w-lg">SKEIN calculates the real moon phase, planetary transits, and astrological context for your location. Your daily draw lives alongside the celestial weather — not random, but situated.</p>
+<h2 class="font-serif text-5xl md:text-6xl text-[#F0EDE5] leading-tight">Every night you show up <br/><span class="text-[#C47D5A]">lights a star.</span></h2>
+<p class="text-xl text-[#C8C3B8] max-w-lg">Above the table sits a night sky of your own. Each day of practice adds a star, and the stars weave into constellations — the Thread, the Moth, the Loom. Beside them, today's real moon phase. No horoscopes, just a quiet record of the nights you kept.</p>
 <div class="p-8 border-l border-[#C47D5A]/30 space-y-4">
 <h4 class="font-label uppercase text-sm tracking-widest text-[#F0EDE5]">Streak Freeze</h4>
 <p class="text-sm text-[#C8C3B8]">Life happens. Miss a day and a Streak Freeze keeps your count alive. Earn one free each week, stack up to three.</p>
@@ -448,13 +486,7 @@ Explore
 <div class="iphone-frame rotate-3" style="width: 280px; height: 570px;">
 <div class="iphone-notch"></div>
 <div class="iphone-screen">
-<!-- v1.1 capture: keep using the Star Sky / celestial screen. Open
-     the upper Star Sky pane (swipe up from MainScene), make sure the
-     moon phase ring + retrograde indicators are visible. Same screen
-     as v1.0 — surface unchanged in v1.1, no recapture strictly
-     needed, but if reshooting, ensure no v1.0 chrome elements
-     persist. -->
-<img alt="Moon phase and astrological context — your celestial weather" src="images/screenshots/v2-celestial.webp"/>
+<img alt="Your sky — a constellation woven from nights of practice, with today's moon phase" src="images/screenshots/v3-celestial.webp"/>
 </div>
 </div>
 </div>
@@ -473,13 +505,7 @@ Explore
 <div class="iphone-frame -rotate-2" style="width: 260px; height: 530px;">
 <div class="iphone-notch"></div>
 <div class="iphone-screen">
-<!-- v1.1 capture: Journal section iPhone — show a journal entry
-     OPEN in detail view (different from the feed in shot 02 of the
-     carousel). Reflection body filled with ~80 words, photo
-     attachment visible, theme chip selected. Use botanical theme
-     here (softer, complements the section heading "Your Practice,
-     Written Down"). -->
-<img alt="Journal entry detail — three-card reading with theme chip, question, and reflection" src="images/screenshots/v2-journal-detail.webp"/>
+<img alt="Journal entry detail — three-card reading on the cloth with a question, theme, and reflection" src="images/screenshots/v3-journal-detail.webp"/>
 </div>
 </div>
 </div>
@@ -871,7 +897,7 @@ A daily card. A reflection. A pattern emerging across months. The themes you pic
 <div class="font-sans text-[11px] uppercase tracking-[0.15em] text-[#C8C3B8]">
                 © 2026 Roman Nikitin · Made in Spain
             </div>
-<div class="flex gap-8">
+<div class="flex flex-wrap justify-center gap-x-8 gap-y-3">
 <a class="font-sans text-[11px] uppercase tracking-[0.15em] text-[#C8C3B8] hover:text-[#F0EDE5] transition-colors duration-300" href="https://instagram.com/skein.app" target="_blank" rel="noopener">Instagram</a>
 <a class="font-sans text-[11px] uppercase tracking-[0.15em] text-[#C8C3B8] hover:text-[#F0EDE5] transition-colors duration-300" href="https://apps.apple.com/app/skein-practice-journal/id6761774248" target="_blank" rel="noopener" data-store-link="footer">App Store</a>
 <a class="font-sans text-[11px] uppercase tracking-[0.15em] text-[#C8C3B8] hover:text-[#F0EDE5] transition-colors duration-300" href="privacy.html">Privacy</a>
@@ -1150,6 +1176,21 @@ document.addEventListener('click', function (e) {
     });
   });
   update();
+})();
+
+// Ritual clips: load and play only while on screen; posters stay put
+// for reduced-motion visitors.
+(function () {
+  var videos = document.querySelectorAll('.ritual-video');
+  if (!videos.length || !('IntersectionObserver' in window)) return;
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) {
+      if (e.isIntersecting) { e.target.play().catch(function () {}); }
+      else { e.target.pause(); }
+    });
+  }, { threshold: 0.35 });
+  videos.forEach(function (v) { io.observe(v); });
 })();
 </script>
 </body></html>
