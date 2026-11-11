@@ -899,6 +899,29 @@ A daily card. A reflection. A pattern emerging across months. The themes you pic
 </div>
 </footer>
 <script>
+// Carry the inbound utm_source into the App Store link as an Apple campaign
+// token, so App Store Connect → Sources → Campaigns reports installs per
+// channel, not only clicks. `pt` is the ASC provider token; without it Apple
+// ignores `ct`. The source survives in-site navigation via sessionStorage.
+(function () {
+  var PROVIDER_TOKEN = '128749062';
+  var params = new URLSearchParams(window.location.search);
+  var source = params.get('utm_source');
+  try {
+    if (source) sessionStorage.setItem('skein_utm_source', source);
+    else source = sessionStorage.getItem('skein_utm_source');
+  } catch (_) {}
+  if (!source) return;
+  var campaign = params.get('utm_campaign');
+  var ct = (source + (campaign ? '-' + campaign : '')).toLowerCase().replace(/[^a-z0-9_-]/g, '').slice(0, 40);
+  document.querySelectorAll('[data-store-link]').forEach(function (a) {
+    var url = new URL(a.href);
+    url.searchParams.set('ct', ct);
+    if (PROVIDER_TOKEN) url.searchParams.set('pt', PROVIDER_TOKEN);
+    url.searchParams.set('mt', '8');
+    a.href = url.toString();
+  });
+})();
 // Outbound App Store clicks, by placement — the only conversion the page has now.
 document.addEventListener('click', function (e) {
   var a = e.target.closest && e.target.closest('[data-store-link]');
